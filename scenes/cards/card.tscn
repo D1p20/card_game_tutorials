@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6xyaudp4jwge"]
+
+[ext_resource type="Texture2D" uid="uid://ckshyter1u4u1" path="res://assets/small_265.png" id="1_60uy7"]
+[ext_resource type="Script" path="res://scenes/cards/card.gd" id="1_tb00r"]
+[ext_resource type="Texture2D" uid="uid://b18r1ad80v02x" path="res://assets/small_265s.png" id="3_8ggqt"]
+[ext_resource type="FontFile" uid="uid://18bvgyq80xnx" path="res://assets/Monoton-Regular.ttf" id="4_fgq5q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oexqo"]
+size = Vector2(90, 128)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ftc8o"]
+font = ExtResource("4_fgq5q")
+font_size = 32
+font_color = Color(1, 1, 0, 1)
+outline_size = 4
+shadow_color = Color(0.67451, 0.568627, 0.0705882, 0)
+
+[node name="card" type="Node2D"]
+z_index = 2
+script = ExtResource("1_tb00r")
+
+[node name="card_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_60uy7")
+
+[node name="card_sprite2" type="Sprite2D" parent="."]
+texture = ExtResource("3_8ggqt")
+
+[node name="draggable_area_card" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="draggable_area_card"]
+shape = SubResource("RectangleShape2D_oexqo")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -33.0
+offset_top = -23.0
+offset_right = 58.0
+offset_bottom = 52.0
+text = "100"
+label_settings = SubResource("LabelSettings_ftc8o")
+
+[connection signal="mouse_entered" from="draggable_area_card" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="draggable_area_card" to="." method="_on_mouse_exited"]

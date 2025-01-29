@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs6u3shuq72n0"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1pa6k"]
+[ext_resource type="PackedScene" uid="uid://o5x22sroqu8q" path="res://scenes/card_manager/card_manager.tscn" id="2_436wk"]
+[ext_resource type="PackedScene" uid="uid://dq7khk1f7rho3" path="res://scenes/player_hand/player_hand.tscn" id="4_mrwhr"]
+[ext_resource type="PackedScene" uid="uid://dwx73m1x6xkoo" path="res://scenes/card_slot/card_slot.tscn" id="5_m4cv6"]
+
+[node name="main" type="Control"]
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = -28.0
+offset_right = 5.0
+offset_bottom = -28.0
+script = ExtResource("1_1pa6k")
+
+[node name="menu" type="Panel" parent="."]
+visible = false
+z_index = 10
+y_sort_enabled = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 499.0
+offset_top = 235.0
+offset_right = 699.0
+offset_bottom = 435.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="quit_button" type="Button" parent="menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 11.0
+offset_right = 27.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT
+"
+
+[node name="CheckBox" type="CheckBox" parent="menu"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 76.0
+offset_right = 165.0
+offset_bottom = 107.0
+text = "FULLSCREEN"
+
+[node name="card_manager" parent="." instance=ExtResource("2_436wk")]
+
+[node name="slot_m" type="Node2D" parent="."]
+position = Vector2(272, 324)
+
+[node name="card_slot" parent="slot_m" instance=ExtResource("5_m4cv6")]
+
+[node name="card_slot2" parent="slot_m" instance=ExtResource("5_m4cv6")]
+position = Vector2(100, 0)
+
+[node name="card_slot3" parent="slot_m" instance=ExtResource("5_m4cv6")]
+position = Vector2(200, 0)
+
+[node name="card_slot4" parent="slot_m" instance=ExtResource("5_m4cv6")]
+position = Vector2(300, 0)
+
+[node name="card_slot5" parent="slot_m" instance=ExtResource("5_m4cv6")]
+position = Vector2(400, 0)
+
+[node name="card_slot6" parent="slot_m" instance=ExtResource("5_m4cv6")]
+position = Vector2(500, 0)
+
+[node name="card_slot7" parent="slot_m" instance=ExtResource("5_m4cv6")]
+position = Vector2(600, 0)
+
+[node name="player_hand" parent="." node_paths=PackedStringArray("cm") instance=ExtResource("4_mrwhr")]
+cm = NodePath("../card_manager")
+
+[connection signal="pressed" from="menu/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="toggled" from="menu/CheckBox" to="." method="_on_check_box_toggled"]
